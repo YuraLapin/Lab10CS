@@ -1,4 +1,4 @@
-﻿using Lab9Main;
+﻿using Lab10Main;
 using System.Collections.Immutable;
 using System.Net;
 
@@ -15,7 +15,7 @@ namespace Lab10Main
             {
                 for (int i = 0; i < arr.GetLength(0); ++i)
                 {
-                    Console.Write(arr[i].ConvertToString() + "\n");
+                    Console.Write(((Person)arr[i]).ConvertToString() + "\n");
                 }
             }
             else
@@ -250,25 +250,61 @@ namespace Lab10Main
         {
             Console.WriteLine("\n\n\n\nЗадание 3");
             int size = 5;
-            var arr = new IRandomInit[size];
+            var arr1 = new IRandomInit[size];
 
-            arr[0] = new Person();
-            arr[1] = new Transport();
-            arr[2] = new Automobile();
-            arr[3] = new Train();
-            arr[4] = new Express();
+            arr1[0] = new Person();
+            arr1[1] = new Transport();
+            arr1[2] = new Automobile();
+            arr1[3] = new Train();
+            arr1[4] = new Express();
 
-            foreach (IRandomInit iri in arr)
+            foreach (IRandomInit iri in arr1)
             {
                 iri.RandomInit();
             }
 
-            Console.WriteLine("Наш массив");
-            PrintArray(arr);
+            Console.WriteLine("Наш массив 1");
+            PrintArray(arr1);
 
-            Array.Sort(arr);
-            Console.WriteLine("\nОтсортированный массив:");
-            PrintArray(arr);
+            Array.Sort(arr1);
+            Console.WriteLine("\nОтсортированный по имени массив 1 (Comparable):");
+            PrintArray(arr1);
+
+            var arr2 = new IRandomInit[size];
+
+            arr2[0] = new Person();
+            arr2[1] = new Transport();
+            arr2[2] = new Automobile();
+            arr2[3] = new Train();
+            arr2[4] = new Express();
+
+            foreach (IRandomInit iri in arr2)
+            {
+                iri.RandomInit();
+            }
+             
+            Console.WriteLine("\nНаш массив 2");
+            PrintArray(arr2);
+
+            Array.Sort(arr2, new SortByName());
+            Console.WriteLine("\nОтсортированный по имени массив 2 (Comparator):");
+            PrintArray(arr2);
+
+            Console.WriteLine("Введите имя для поиска в массиве:");
+            string toFind = Console.ReadLine();
+            Array.BinarySearch(arr1, new Person(toFind));
+
+            var original = new Person("Yura", 19, 187);
+            Person clone = (Person)original.Clone();
+            Person copy = (Person)original.ShallowCopy();
+            Console.WriteLine("Оригинал:");
+            original.Print();
+            clone.name = "clone";
+            Console.WriteLine("Оригинал после изменения имени клона:");
+            original.Print();
+            copy.name = "copy";
+            Console.WriteLine("Оригинал после изменения имени копии:");
+            original.Print();
         }
 
         public static int Main()

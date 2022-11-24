@@ -1,15 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Lab10Main;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Lab9Test
+namespace Lab10Test
 {
     [TestClass]
-    public class UnitTests
+    public class PersonTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void NameOnlyConstructor()
         {
-
-        }
+            Person actual = new Person("1");
+            Person expected = new Person("1", 1, 1);
+            Assert.AreEqual(actual, expected);
+        }        
     }
 }

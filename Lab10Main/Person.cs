@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab10Main
 {
-    public class Person: IRandomInit, IComparable
+    public class Person: IRandomInit, IComparable, ICloneable
     {
         public string name;
         public int age;
@@ -16,6 +16,13 @@ namespace Lab10Main
         public Person()
         {
             name = "";
+            age = 0;
+            height = 0;
+        }
+
+        public Person(in string name)
+        {
+            this.name = name;
             age = 0;
             height = 0;
         }
@@ -50,14 +57,34 @@ namespace Lab10Main
             return name + ": age - " + age + ", height - " + height;
         }
 
+        public void Print()
+        {
+            Console.WriteLine(ConvertToString());
+        }
+
         public static explicit operator Transport(Person obj)
         {
             return new Transport(obj.name, 0);
         }
 
+        public static explicit operator Person(Transport obj)
+        {
+            return new Person(obj.name, 0, 0);
+        }
+
         public int CompareTo(object obj)
         {
-            return string.Compare(name, ((Person)obj).name);
+            return string.Compare(this.name, ((Person)obj).name);
+        }
+
+        public object Clone()
+        {
+            return new Person(name, age, height);
+        }
+
+        public object ShallowCopy()
+        {
+            return MemberwiseClone();
         }
     }
 }

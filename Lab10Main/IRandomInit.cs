@@ -8,8 +8,6 @@ namespace Lab10Main
 {
     public interface IRandomInit
     {
-        public void RandomInit();
-
-        public string ConvertToString();
+        public void RandomInit();        
     }    
 }
