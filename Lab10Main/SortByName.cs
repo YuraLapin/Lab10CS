@@ -10,7 +10,30 @@ namespace Lab10Main
     {
         public int Compare(object obj1, object obj2)
         {
-            return string.Compare(((Person)obj1).name, ((Person)obj2).name);
+            int res = 0;
+            if (obj1 is Transport t1)
+            {
+                if (obj2 is Transport t2)
+                {
+                    res = string.Compare(t1.name, t2.name);
+                }
+                if (obj2 is Person p2)
+                {
+                    res = string.Compare(t1.name, p2.name);
+                }
+            }   
+            if (obj1 is Person p1)
+            {
+                if (obj2 is Transport t2)
+                {
+                    res = string.Compare(p1.name, t2.name);
+                }
+                if (obj2 is Person p2)
+                {
+                    res = string.Compare(p1.name, p2.name);
+                }
+            }
+            return res;
         }
     }
 }

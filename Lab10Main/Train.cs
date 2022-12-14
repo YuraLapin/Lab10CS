@@ -26,7 +26,7 @@ namespace Lab10Main
             cars = Program.rand.Next(maxCars);
         }
 
-        public override string ConvertToString()
+        public override string ToString()
         {
             return name.ToString() + ": power - " + power.ToString() + ", cars - " + cars.ToString();
         }

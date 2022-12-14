@@ -15,7 +15,7 @@ namespace Lab10Main
             {
                 for (int i = 0; i < arr.GetLength(0); ++i)
                 {
-                    Console.Write(((Person)arr[i]).ConvertToString() + "\n");
+                    Console.Write(arr[i].ToString() + "\n");
                 }
             }
             else
@@ -290,19 +290,22 @@ namespace Lab10Main
             Console.WriteLine("\nОтсортированный по имени массив 2 (Comparator):");
             PrintArray(arr2);
 
-            Console.WriteLine("Введите имя для поиска в массиве:");
+            Console.WriteLine("Введите имя для поиска в массиве 2:");
             string toFind = Console.ReadLine();
-            Array.BinarySearch(arr1, new Person(toFind));
+            Console.WriteLine("Индекс элемента в массиве 2: " + Array.BinarySearch(arr2, new Person(toFind)));
 
             var original = new Person("Yura", 19, 187);
             Person clone = (Person)original.Clone();
             Person copy = (Person)original.ShallowCopy();
+
             Console.WriteLine("Оригинал:");
             original.Print();
+
             clone.name = "clone";
             Console.WriteLine("Оригинал после изменения имени клона:");
             original.Print();
-            copy.name = "copy";
+
+            copy.name += " copy";
             Console.WriteLine("Оригинал после изменения имени копии:");
             original.Print();
         }

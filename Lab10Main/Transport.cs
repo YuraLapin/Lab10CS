@@ -40,7 +40,7 @@ namespace Lab10Main
             power = Program.rand.Next(maxPower);
         }
         
-        public virtual string ConvertToString()
+        public override string ToString()
         {
             return name.ToString() + ": power - " + power.ToString();
         }
@@ -52,22 +52,26 @@ namespace Lab10Main
 
         public void Print()
         {
-            Console.WriteLine(this.ConvertToString());
+            Console.WriteLine(this.ToString());
         }
 
         public static explicit operator Person(Transport obj)
         {
             return new Person(obj.name, 0, 0);
-        }
-
-        public static explicit operator Transport(Person obj)
-        {
-            return new Transport(obj.name, 0);
-        }
+        }        
 
         public int CompareTo(object obj)
         {
-            return string.Compare(this.name, ((Transport)obj).name);            
+            int res = 0;
+            if (obj is Transport c) 
+            {
+                res = string.Compare(this.name, c.name);
+            }
+            if (obj is Person p)
+            {
+                res = string.Compare(this.name, p.name);
+            }
+            return res;    
         }
     }
 }

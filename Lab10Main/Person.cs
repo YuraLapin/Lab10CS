@@ -52,29 +52,33 @@ namespace Lab10Main
             height = Program.rand.Next(maxHeight);
         }
 
-        public string ConvertToString()
+        public override string ToString()
         {
             return name + ": age - " + age + ", height - " + height;
         }
 
         public void Print()
         {
-            Console.WriteLine(ConvertToString());
+            Console.WriteLine(ToString());
         }
 
         public static explicit operator Transport(Person obj)
         {
             return new Transport(obj.name, 0);
-        }
-
-        public static explicit operator Person(Transport obj)
-        {
-            return new Person(obj.name, 0, 0);
-        }
+        }        
 
         public int CompareTo(object obj)
         {
-            return string.Compare(this.name, ((Person)obj).name);
+            int res = 0;
+            if (obj is Transport c)
+            {
+                res = string.Compare(this.name, c.name);
+            }
+            if (obj is Person p)
+            {
+                res = string.Compare(this.name, p.name);
+            }
+            return res;
         }
 
         public object Clone()

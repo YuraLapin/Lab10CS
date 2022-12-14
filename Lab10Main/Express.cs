@@ -8,7 +8,7 @@ namespace Lab10Main
 {
     public class Express: Train
     {
-        List<string> stationsToSkip;
+        public List<string> stationsToSkip;
 
         public Express(): base()
         {
@@ -29,7 +29,7 @@ namespace Lab10Main
             }
         }
 
-        public override string ConvertToString()
+        public override string ToString()
         {
             var sb = new StringBuilder();
             sb.Append(name.ToString() + ": power - " + power.ToString() + ", cars - " + cars.ToString() + ", list of stations to skip: [ ");
